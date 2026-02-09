@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "nome_musica": "Big Iron",
+        "artista": "Marty Robbins",
+        "duracao": 238,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/10%20-%20Marty%20Robbins%20-%20big%20iron.mp3"
+    },
+        {
+        "id": 2,
+        "nome_musica": "teste 2",
+        "artista": "Marty Robbins",
+        "duracao": 238,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/10%20-%20Marty%20Robbins%20-%20big%20iron.mp3"
+    },
+        {
+        "id": 3,
+        "nome_musica": "teste 3",
+        "artista": "Marty Robbins",
+        "duracao": 238,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/10%20-%20Marty%20Robbins%20-%20big%20iron.mp3"
+    }
+
+]

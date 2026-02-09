@@ -42,24 +42,54 @@ body {
 /* --- A TELA VERDE (Área útil) --- */
 .pipboy-screen {
     position: absolute;
-    /* Ajuste fino da posição - Se ficar torto, mexa nesses % */
-    top: 47%;
-    left: 49.5%; /* Empurrei um pouquinho pra direita pra centralizar */
+    
+    /* --- ZONA DE CALIBRAÇÃO --- */
+    /* Mexa nestes dois números até encaixar */
+    
+    left: 57%;  /* Tente aumentar (52%, 53%, 54%) para ir pra DIREITA */
+                /* Tente diminuir (49%, 48%) para ir pra ESQUERDA */
+
+    top: 41%;   /* Aumente para descer, diminua para subir */
+    
+    /* --------------------------- */
+
+    /* Isso centraliza o elemento baseado no ponto que você definiu acima */
     transform: translate(-50%, -50%);
     
-    width: 50%;  /* Área útil horizontal */
-    height: 55%; /* Área útil vertical */
+    /* Ajuste o tamanho da caixa se ela estiver vazando ou muito pequena */
+    width: 50%; 
+    height: 50%;
     
-    /* Centraliza o conteúdo DENTRO da tela */
+    /* Configurações de alinhamento interno */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center;     /* Centraliza horizontalmente */
-    text-align: center;
+    justify-content: center; 
+    align-items: center;     
     
-    color: var(--pip-green);
-    text-shadow: 0 0 8px var(--pip-green); /* Brilho Neon */
     z-index: 5;
+
+    /* --- IMPORTANTE: BORDA VERMELHA PARA AJUSTE --- */
+    /* Enquanto estiver torto, deixe isso ativado. */
+    /* Quando ficar perfeito, apague esta linha ou mude para 'none' */
+    /*border: 2px solid red; 
+    /*background-color: rgba(255, 0, 0, 0.1); /* Um fundo vermelho fraco pra ajudar */
+}
+
+/* --- Container interno para reforçar o alinhamento --- */
+.inner-container {
+    text-align: center; /* Garante que o texto dentro dos blocos fique no meio */
+    color: var(--pip-green);
+    text-shadow: 0 0 8px var(--pip-green);
+    width: 100%; /* Ocupa toda a largura disponível para centralizar bem */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Tipografia da Rádio --- */
+.radio-info {
+    margin-bottom: 25px; /* Espaço entre texto e ondas */
+    width: 100%;
 }
 
 /* --- Tipografia da Rádio --- */
@@ -164,4 +194,68 @@ body {
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
+}
+
+.volume-controls {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 80%; /* Largura da barra em relação à tela */
+}
+
+.vol-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--pip-green);
+}
+
+/* 1. Remove o estilo padrão do navegador */
+input[type=range] {
+    /*-webkit-appearance: none; /* Chrome/Safari */
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+/* 2. Estilo do "Trilho" (A linha por onde corre) */
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #121f12; /* Fundo escuro */
+    border: 1px solid var(--pip-green); /* Borda verde */
+    box-shadow: 0 0 2px var(--pip-green);
+}
+
+/* 3. Estilo do "Botão" (O quadradinho que você arrasta) */
+input[type=range]::-webkit-slider-thumb {
+    height: 14px;
+    width: 14px;
+    background: var(--pip-green);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px; /* Centraliza no trilho */
+    box-shadow: 0 0 5px var(--pip-green);
+    border-radius: 0; /* Deixa quadrado (estilo retrô) */
+}
+
+/* Ajuste para Firefox (caso use) */
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #121f12;
+    border: 1px solid var(--pip-green);
+}
+input[type=range]::-moz-range-thumb {
+    height: 14px;
+    width: 14px;
+    background: var(--pip-green);
+    cursor: pointer;
+    border: none;
+    border-radius: 0;
 }

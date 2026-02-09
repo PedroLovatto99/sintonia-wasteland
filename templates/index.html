@@ -12,13 +12,13 @@
     <div id="start-overlay" class="overlay">
         <div class="overlay-content">
             <h1>PLEASE STAND BY</h1>
-            <p>[ CLIQUE PARA INICIAR SISTEMA ]</p>
+            <p>[ CLIQUE PARA INICIAR O SISTEMA ]</p>
             <div class="loader"></div>
         </div>
     </div>
 
     <header class="vault-header p-3 text-center">
-        <h1 class="h4 m-0 vault-text">⚡ GALAXY NEWS RADIO ⚡</h1>
+        <h1 class="h4 m-0 vault-text">⚡ Sintonia Wasteland ⚡</h1>
     </header>
 
     <main class="flex-grow-1 d-flex align-items-center justify-content-center bg-dark py-4">
@@ -26,18 +26,30 @@
             <div class="pipboy-wrapper">
                 <img src="{{ url_for('static', filename='img/pip-boy.png') }}" alt="Pip-Boy 3000" class="pipboy-img">
                 
-                <div class="pipboy-screen">
-                    <div class="radio-info">
-                        <div class="label">NOW PLAYING</div>
-                        <h2 class="song-title">BIG IRON</h2>
-                        <h3 class="artist-name">MARTY ROBBINS</h3>
-                    </div>
+<div class="pipboy-screen">
+    
+    <div class="inner-container">
+        
+        <div class="radio-info">
+            <div class="label">NOW PLAYING</div>
+            <h2 class="song-title">BIG IRON</h2>
+            <h3 class="artist-name">MARTY ROBBINS</h3>
+        </div>
 
-                    <div class="wave-container">
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                    </div>
-                </div>
+        <div class="wave-container">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="volume-controls">
+    <span class="vol-label">VOL</span>
+    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+</div>
+        
+    </div> </div>
             </div>
 
             <audio id="radio-player" loop>
@@ -50,21 +62,8 @@
         <small class="vault-text">© 2077 RobCo Industries</small>
     </footer>
 
-    <script>
-        document.getElementById('start-overlay').addEventListener('click', function() {
-            var audio = document.getElementById('radio-player');
-            var overlay = document.getElementById('start-overlay');
-            
-            // 1. Tenta tocar o áudio
-            audio.play().then(() => {
-                // 2. Se der certo, some com a tela de bloqueio
-                overlay.style.opacity = '0';
-                setTimeout(() => { overlay.style.display = 'none'; }, 500); // Espera a animação
-            }).catch(error => {
-                console.log("Erro ao tentar tocar: " + error);
-            });
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/player.js') }}"></script>
+
 
 </body>
 </html>
