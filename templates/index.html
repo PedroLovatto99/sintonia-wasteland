@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio New Vegas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div id="start-overlay" class="overlay">
+        <div class="overlay-content">
+            <h1>PLEASE STAND BY</h1>
+            <p>[ CLIQUE PARA INICIAR SISTEMA ]</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <header class="vault-header p-3 text-center">
+        <h1 class="h4 m-0 vault-text">⚡ GALAXY NEWS RADIO ⚡</h1>
+    </header>
+
+    <main class="flex-grow-1 d-flex align-items-center justify-content-center bg-dark py-4">
+        <div class="container text-center">
+            <div class="pipboy-wrapper">
+                <img src="{{ url_for('static', filename='img/pip-boy.png') }}" alt="Pip-Boy 3000" class="pipboy-img">
+                
+                <div class="pipboy-screen">
+                    <div class="radio-info">
+                        <div class="label">NOW PLAYING</div>
+                        <h2 class="song-title">BIG IRON</h2>
+                        <h3 class="artist-name">MARTY ROBBINS</h3>
+                    </div>
+
+                    <div class="wave-container">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <audio id="radio-player" loop>
+                <source src="https://archive.org/download/fallout-new-vegas-ost-bootleg/10%20-%20Marty%20Robbins%20-%20big%20iron.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </main>
+
+    <footer class="vault-footer p-2 text-center">
+        <small class="vault-text">© 2077 RobCo Industries</small>
+    </footer>
+
+    <script>
+        document.getElementById('start-overlay').addEventListener('click', function() {
+            var audio = document.getElementById('radio-player');
+            var overlay = document.getElementById('start-overlay');
+            
+            // 1. Tenta tocar o áudio
+            audio.play().then(() => {
+                // 2. Se der certo, some com a tela de bloqueio
+                overlay.style.opacity = '0';
+                setTimeout(() => { overlay.style.display = 'none'; }, 500); // Espera a animação
+            }).catch(error => {
+                console.log("Erro ao tentar tocar: " + error);
+            });
+        });
+    </script>
+
+</body>
+</html>

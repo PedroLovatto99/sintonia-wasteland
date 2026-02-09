@@ -11,6 +11,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 load_dotenv()
 
@@ -27,9 +28,11 @@ def inicializar_radialista():
 
     global chain, is_ready
 
-    PERSIST_DIR = "./chroma_db"
-    PDF_FILE = "dados.pdf"
-    embedding_model = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+    PERSIST_DIR = "rag/chroma_db"
+    PDF_FILE = "rag/dados.pdf"
+    #embedding_model = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+    embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    
 
     if os.path.exists(PERSIST_DIR) and os.listdir(PERSIST_DIR):
         vectorstore = Chroma(persist_directory=PERSIST_DIR, embedding_function=embedding_model)
@@ -45,26 +48,6 @@ def inicializar_radialista():
             embedding_function=embedding_model,
             persist_directory=PERSIST_DIR
         )
-
-        batch_size = 20
-        total_docs = len(splits)
-        
-        for i in range(0, total_docs, batch_size):
-            batch = splits[i : i + batch_size]
-            
-            sucesso = False
-            while not sucesso:
-                try:
-                    print(f"Processando lote {i} a {min(i + batch_size, total_docs)}...")
-                    vectorstore.add_documents(batch)
-                    sucesso = True
-                    time.sleep(2)
-                except Exception as e:
-                    if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                        print("⏳ Cota excedida. Esperando 60 segundos para limpar...")
-                        time.sleep(60)
-                    else:
-                        raise e
 
     retriever = vectorstore.as_retriever()
 
