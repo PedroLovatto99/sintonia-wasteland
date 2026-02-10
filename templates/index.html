@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio New Vegas</title>
+    <title>Sintonia Wasteland</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
 </head>
-<body>
 
-    <div id="start-overlay" class="overlay">
+<body>
+        <div id="start-overlay" class="overlay">
         <div class="overlay-content">
             <h1>PLEASE STAND BY</h1>
             <p>[ CLIQUE PARA INICIAR O SISTEMA ]</p>
@@ -17,53 +17,46 @@
         </div>
     </div>
 
-    <header class="vault-header p-3 text-center">
-        <h1 class="h4 m-0 vault-text">⚡ Sintonia Wasteland ⚡</h1>
+    <header class="vault-header">
+        <h1 class="vault-text">⚡ Sintonia Wasteland ⚡</h1>
     </header>
 
-    <main class="flex-grow-1 d-flex align-items-center justify-content-center bg-dark py-4">
-        <div class="container text-center">
-            <div class="pipboy-wrapper">
-                <img src="{{ url_for('static', filename='img/pip-boy.png') }}" alt="Pip-Boy 3000" class="pipboy-img">
-                
-<div class="pipboy-screen">
-    
-    <div class="inner-container">
+    <main>
         
-        <div class="radio-info">
-            <div class="label">NOW PLAYING</div>
-            <h2 class="song-title">BIG IRON</h2>
-            <h3 class="artist-name">MARTY ROBBINS</h3>
-        </div>
+        <div class="pipboy-wrapper">
+            
+            <img src="{{ url_for('static', filename='img/pip-boy.png') }}" alt="Pip-Boy 3000" class="pipboy-img">
+            
+            <div class="pipboy-screen">
+                <div class="inner-container">
+                    
+                    <div class="radio-info">
+                        <h2 class="song-title" id="titulo-visual">{{ musica['nome_musica'] }}</h2>
+                        <h3 class="artist-name" id="artista-visual">{{ musica['artista'] }}</h3>
+                    </div>
 
-        <div class="wave-container">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <div class="volume-controls">
-    <span class="vol-label">VOL</span>
-    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
-</div>
-        
-    </div> </div>
+                    <div class="wave-container">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+                    
+                    <div class="volume-controls">
+                        <span class="vol-label">VOL</span>
+                        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div> 
             </div>
-
-            <audio id="radio-player" loop>
-                <source src="https://archive.org/download/fallout-new-vegas-ost-bootleg/10%20-%20Marty%20Robbins%20-%20big%20iron.mp3" type="audio/mpeg">
-            </audio>
+            
         </div>
+
+        <audio id="radio-player" src="{{ musica['url'] }}"></audio>
+        
     </main>
 
-    <footer class="vault-footer p-2 text-center">
+    <footer class="vault-footer">
         <small class="vault-text">© 2077 RobCo Industries</small>
     </footer>
 
     <script src="{{ url_for('static', filename='js/player.js') }}"></script>
-
-
 </body>
 </html>

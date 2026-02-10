@@ -1,225 +1,237 @@
-/* --- Configuração Básica --- */
-body {
-    background-color: #1a1a1a;
-    font-family: 'Courier New', monospace;
-    color: #f5d547;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* --- Cores e Variáveis --- */
+/* =========================================
+   VARIAVEIS E RESET
+   ========================================= */
 :root {
-    --pip-green: #2fff00;       /* Verde Claro (Texto/Onda) */
-    --pip-bg: #121f12;          /* Fundo escuro da tela (Opcional) */
+    --pip-green: #f5d547;       /* Verde Fósforo */
+    --pip-bg: #121f12;          /* Fundo Escuro do Monitor */
+    --vault-blue: #004e92;      /* Azul Vault-Tec */
+    --vault-yellow: #f5d547;    /* Amarelo Vault-Tec */
+    --bg-dark: #1a1a1a;         /* Fundo da Página */
 }
 
-/* --- Header/Footer (Padrão) --- */
+* {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   LAYOUT PRINCIPAL (TELA TRAVADA)
+   ========================================= */
+body {
+    background-color: var(--bg-dark);
+    font-family: 'Courier New', monospace;
+    color: var(--vault-yellow);
+    
+    /* O Segredo do Footer Fixo: */
+    height: 100vh;       /* Ocupa 100% da altura da janela */
+    margin: 0;
+    overflow: hidden;    /* Proíbe barra de rolagem */
+    
+    display: flex;
+    flex-direction: column; /* Empilha: Header -> Main -> Footer */
+}
+
+/* Header e Footer não encolhem e ficam no topo/fundo */
 .vault-header, .vault-footer {
-    background-color: #004e92;
-    border-top: 4px solid #f5d547;
-    border-bottom: 4px solid #f5d547;
-}
-.vault-text {
-    color: #f5d547;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
+    background-color: var(--vault-blue);
+    border-top: 4px solid var(--vault-yellow);
+    border-bottom: 4px solid var(--vault-yellow);
+    padding: 15px 0;
+    text-align: center;
+    
+    flex-shrink: 0; /* Garante que não sejam esmagados */
+    z-index: 20;
 }
 
-/* --- Wrapper do Pip-Boy --- */
-.pipboy-wrapper {
+.vault-text {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* O Main ocupa todo o espaço que sobra no meio */
+main {
+    flex-grow: 1;
     position: relative;
     width: 100%;
-    /* ANTES ERA: max-width: 800px; */
-    /* MUDAR PARA ALGO MENOR (tente 550px ou 600px) */
-    max-width: 550px; 
-    margin: 0 auto;
+    
+    /* Centraliza o Pip-Boy no espaço vazio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
 }
 
-/* O resto continua igual... */
+/* =========================================
+   O PIP-BOY (ÁREA CENTRAL)
+   ========================================= */
+.pipboy-wrapper {
+    position: relative;
+    
+    /* Tente 60%. Se achar pequeno, suba para 65%. Se grande, 55%. */
+    height: 100%;   
+    
+    /* Largura automática (a imagem decide a largura baseada na altura) */
+    width: auto;   
+    
+    /* Importante para não deformar */
+    aspect-ratio: auto; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .pipboy-img {
-    width: 100%;
+    /* A imagem preenche 100% da caixa que criamos acima */
+    height: 100%;        
+    width: auto;         
+    object-fit: contain; 
     display: block;
-    /* Opcional: ajuda a imagem a não estourar verticalmente em telas muito achatadas */
-    max-height: 130vh; 
-    object-fit: contain;
+    
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.9));
 }
-
-/* --- A TELA VERDE (Área útil) --- */
+/* =========================================
+   A TELA DO MONITOR (CALIBRAÇÃO)
+   ========================================= */
 .pipboy-screen {
     position: absolute;
     
     /* --- ZONA DE CALIBRAÇÃO --- */
-    /* Mexa nestes dois números até encaixar */
+    /* Ajuste estes 4 valores até o texto cair dentro do vidro do Pip-Boy */
     
-    left: 57%;  /* Tente aumentar (52%, 53%, 54%) para ir pra DIREITA */
-                /* Tente diminuir (49%, 48%) para ir pra ESQUERDA */
-
-    top: 41%;   /* Aumente para descer, diminua para subir */
+    top: 38%;       /* Sobe ou Desce */
+    left: 41%;      /* Esquerda ou Direita */
+    width: 45%;     /* Largura da área de texto */
+    height: 35%;    /* Altura da área de texto */
     
-    /* --------------------------- */
-
-    /* Isso centraliza o elemento baseado no ponto que você definiu acima */
-    transform: translate(-50%, -50%);
+    /* -------------------------- */
     
-    /* Ajuste o tamanho da caixa se ela estiver vazando ou muito pequena */
-    width: 50%; 
-    height: 50%;
+    transform: translate(-50%, -50%); /* Centraliza no ponto top/left definido acima */
     
-    /* Configurações de alinhamento interno */
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center;     
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
     
-    z-index: 5;
-
-    /* --- IMPORTANTE: BORDA VERMELHA PARA AJUSTE --- */
-    /* Enquanto estiver torto, deixe isso ativado. */
-    /* Quando ficar perfeito, apague esta linha ou mude para 'none' */
-    /*border: 2px solid red; 
-    /*background-color: rgba(255, 0, 0, 0.1); /* Um fundo vermelho fraco pra ajudar */
+    /* DICA DE DEBUG: Descomente a linha abaixo para ver a caixa vermelha e ajustar */
+    /* border: 1px solid red; */
 }
 
-/* --- Container interno para reforçar o alinhamento --- */
-.inner-container {
-    text-align: center; /* Garante que o texto dentro dos blocos fique no meio */
-    color: var(--pip-green);
-    text-shadow: 0 0 8px var(--pip-green);
-    width: 100%; /* Ocupa toda a largura disponível para centralizar bem */
+/* =========================================
+   TIPOGRAFIA E CONTEÚDO DA TELA
+   ========================================= */
+.radio-info {
+    /* MUDANÇA: Define uma largura segura (85%) para não encostar nas bordas */
+    width: 85%; 
+    
+    /* MUDANÇA: Centraliza o bloco .radio-info dentro da tela */
+    margin: 0 auto 15px auto; /* 0 topo, auto direita, 15px baixo, auto esquerda */
+    
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* --- Tipografia da Rádio --- */
-.radio-info {
-    margin-bottom: 25px; /* Espaço entre texto e ondas */
-    width: 100%;
-}
-
-/* --- Tipografia da Rádio --- */
-.radio-info {
-    margin-bottom: 20px; /* Espaço entre texto e ondas */
+    
+    color: var(--pip-green);
+    text-shadow: 0 0 5px var(--pip-green);
 }
 
 .label {
-    font-size: 0.8rem;
-    opacity: 0.8;
+    font-size: 1.1rem;
+    opacity: 0.7;
     margin-bottom: 5px;
+    letter-spacing: 1px;
+    width: 100%; 
+    text-align: center;
 }
 
 .song-title {
-    font-size: 1.8rem;
+    font-size: 1.1rem; 
     font-weight: bold;
-    margin: 0;
+    margin: 5px 0;
     text-transform: uppercase;
+    line-height: 1.2; /* Um pouco mais de altura pra quando quebrar linha */
+    
+    /* Configurações de quebra de texto */
+    width: 100%;
+    text-align: center;
+    white-space: normal; /* Permite quebrar linha se o nome for gigante */
+    word-wrap: break-word; /* Garante que palavras longas não vazem */
 }
 
 .artist-name {
-    font-size: 1.2rem;
-    margin: 5px 0 0 0;
+    font-size: 1rem;
+    margin: 0 0 10px 0;
     text-transform: uppercase;
+    
+    width: 100%;
+    text-align: center;
+    white-space: normal; /* Permite quebrar linha */
 }
 
-/* --- Animação das Ondas (Equalizador Fake) --- */
+.time-display {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+/* =========================================
+   ANIMAÇÃO DAS ONDAS (EQUALIZADOR)
+   ========================================= */
 .wave-container {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: 40px; /* Altura máxima das ondas */
-    gap: 5px;     /* Espaço entre as barras */
+    height: 30px;
+    gap: 4px;
 }
 
 .bar {
-    width: 8px;
+    width: 6px;
     background-color: var(--pip-green);
-    box-shadow: 0 0 10px var(--pip-green);
+    box-shadow: 0 0 8px var(--pip-green);
     animation: wave-animation 1s infinite ease-in-out;
 }
 
-/* Cria o movimento de sobe e desce */
 @keyframes wave-animation {
     0%, 100% { height: 10%; }
     50% { height: 100%; }
 }
 
-/* Cada barra tem um delay diferente para parecer aleatório */
-.bar:nth-child(1) { animation-duration: 0.8s; }
-.bar:nth-child(2) { animation-duration: 1.1s; }
-.bar:nth-child(3) { animation-duration: 1.3s; }
-.bar:nth-child(4) { animation-duration: 0.9s; }
-.bar:nth-child(5) { animation-duration: 1.2s; }
-.bar:nth-child(6) { animation-duration: 1.0s; }
-.bar:nth-child(7) { animation-duration: 1.4s; }
-.bar:nth-child(8) { animation-duration: 0.7s; }
+/* Variação para parecer aleatório */
+.bar:nth-child(odd) { animation-duration: 0.8s; }
+.bar:nth-child(even) { animation-duration: 1.2s; }
 
-.overlay {
-    position: fixed; /* Cobre a tela toda */
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: #1a1a1a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Fica em cima de tudo */
-    transition: opacity 0.5s ease; /* Animação suave pra sumir */
-    cursor: pointer; /* Mãozinha de clique */
-    
-    /* Fundo estilo TV antiga com ruído estático (opcional) */
-    background-image: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        #000 4px
-    );
-}
-
-.overlay-content {
-    text-align: center;
-    color: #f5d547;
-    font-family: 'Courier New', monospace;
-    text-transform: uppercase;
-    border: 4px solid #f5d547;
-    padding: 40px;
-    background-color: #004e92; /* Azul Vault-Tec */
-    box-shadow: 0 0 20px #f5d547;
-}
-
-.overlay-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    text-shadow: 4px 4px 0 #000;
-}
-
-.overlay-content p {
-    font-size: 1.2rem;
-    animation: blink 1s infinite; /* Pisca o texto */
-}
-
-/* Animação de piscar texto */
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
+/* =========================================
+   CONTROLE DE VOLUME
+   ========================================= */
 .volume-controls {
     margin-top: 15px;
+    width: 80%;
     display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 80%; /* Largura da barra em relação à tela */
+    justify-content: center;
+    align-items: center; /* Garante que o texto fique alinhado com a barra */
+    
+    /* AQUI ESTÁ O TRUQUE DO ESPAÇO: */
+    gap: 15px; /* Distância entre o "VOL" e o Slider */
 }
 
 .vol-label {
     font-size: 0.8rem;
+    width: 60%;   
     font-weight: bold;
-    color: var(--pip-green);
+    color: var(--pip-green); /* Mantive verde para combinar com o 'track', mas pode por amarelo se quiser */
+    white-space: nowrap; /* Garante que o texto não quebre linha */
 }
 
-/* 1. Remove o estilo padrão do navegador */
 input[type=range] {
-    /*-webkit-appearance: none; /* Chrome/Safari */
+    -webkit-appearance: none; /* Para Chrome, Safari, Opera */
+    appearance: none;         /* Padrão oficial moderno */
+    
     width: 100%;
     background: transparent;
 }
@@ -228,41 +240,158 @@ input[type=range]:focus {
     outline: none;
 }
 
-/* 2. Estilo do "Trilho" (A linha por onde corre) */
+/* O Trilho (A linha por onde corre) - Mantive verde estilo terminal */
 input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 8px;
+    height: 6px;
     cursor: pointer;
-    background: #121f12; /* Fundo escuro */
-    border: 1px solid var(--pip-green); /* Borda verde */
+    background: #0a140a;
+    border: 1px solid var(--pip-green);
     box-shadow: 0 0 2px var(--pip-green);
 }
 
-/* 3. Estilo do "Botão" (O quadradinho que você arrasta) */
+/* O Botão (A bolinha que você arrasta) - AGORA AMARELO */
 input[type=range]::-webkit-slider-thumb {
-    height: 14px;
+    height: 14px; /* Aumentei um pouquinho pra ficar mais fácil de clicar */
     width: 14px;
-    background: var(--pip-green);
+    
+    /* A MUDANÇA DE COR: */
+    background: #f5d547; /* Amarelo Vault-Tec */
+    box-shadow: 0 0 8px #f5d547; /* Brilho Amarelo */
+    
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -4px; /* Centraliza no trilho */
-    box-shadow: 0 0 5px var(--pip-green);
-    border-radius: 0; /* Deixa quadrado (estilo retrô) */
+    margin-top: -5px; /* Centraliza no trilho (calculo: altura do trilho/2 - altura do botao/2) */
 }
 
 /* Ajuste para Firefox (caso use) */
-input[type=range]::-moz-range-track {
-    width: 100%;
-    height: 8px;
-    cursor: pointer;
-    background: #121f12;
-    border: 1px solid var(--pip-green);
-}
 input[type=range]::-moz-range-thumb {
     height: 14px;
     width: 14px;
-    background: var(--pip-green);
-    cursor: pointer;
+    background: #f5d547;
     border: none;
     border-radius: 0;
+    cursor: pointer;
+}
+
+/* =========================================
+   OVERLAY (TELA DE "STAND BY")
+   ========================================= */
+.overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+    cursor: pointer;
+    
+    /* Efeito de Scanline TV Antiga no fundo */
+    background-image: linear-gradient(
+        transparent 50%, 
+        rgba(0, 0, 0, 0.5) 50%
+    );
+    background-size: 100% 4px;
+}
+
+.overlay-content {
+    text-align: center;
+    border: 4px solid var(--vault-yellow);
+    padding: 40px;
+    background-color: var(--vault-blue);
+    box-shadow: 0 0 30px var(--vault-yellow);
+    max-width: 90%;
+}
+
+.overlay-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0 #000;
+}
+
+.overlay-content p {
+    font-size: 1.2rem;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* =========================================
+   RESPONSIVIDADE (Celulares)
+   ========================================= */
+@media (max-width: 600px) {
+    .pipboy-wrapper {
+        width: 100%; /* No celular, usa a largura toda */
+        height: auto;
+    }
+    
+    .song-title { font-size: 1rem; }
+    .artist-name { font-size: 0.8rem; }
+}
+
+.dj-mode .artist-name {
+    font-size: 0.3rem;       /* Diminuí mais um pouco a fonte */
+    line-height: 1.15;       /* Linhas mais coladas */
+    white-space: normal;     /* Permite quebrar linha */
+    text-align: justify;     /* Texto justificado */
+    
+    /* NOVOS LIMITES RÍGIDOS */
+    width: 70%;              /* Força o texto a ser mais estreito que a tela */
+    margin: 0 auto;          /* Centraliza o bloco de texto horizontalmente */
+    max-height: 100px;       /* Reduzi a altura máxima */
+    
+    /* Barra de rolagem discreta se precisar */
+    overflow-y: auto;        
+    overflow-x: hidden;
+    padding: 0 5px;          /* Um pequeno respiro nas laterais */
+
+    /* Esconde a barra de rolagem (estética Pip-Boy) */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.dj-mode .artist-name::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Status piscando (para "Recebendo Sinal...") */
+.blink-text {
+    animation: blink-animation 1s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    to { visibility: hidden; }
+}
+
+.inner-container.dj-active .wave-container,
+.inner-container.dj-active .volume-controls {
+    display: none !important;
+}
+
+/* 2. Reconfigura o texto para ocupar o espaço que sobrou */
+.inner-container.dj-active .artist-name {
+    font-size: 0.85rem;      /* Fonte legível */
+    line-height: 1.3;        /* Mais espaço entre linhas para leitura confortável */
+    white-space: normal;     /* Quebra de linha */
+    text-align: justify;     /* Texto justificado */
+    
+    /* AGORA PODEMOS USAR O ESPAÇO EXTRA! */
+    width: 80%;              
+    margin: 10px auto 0 auto; /* Um pouco de margem no topo */
+    
+    /* Aumentei muito a altura máxima pois não tem mais volume/barras atrapalhando */
+    max-height: 250px;       
+    
+    overflow-y: auto;        
+    padding-right: 5px;      
+
+    /* Esconde scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }

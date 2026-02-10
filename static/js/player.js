@@ -1,69 +1,128 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- 1. SELEÇÃO DE ELEMENTOS ---
     const audio = document.getElementById('radio-player');
-    
-    // Controle de Volume
-    const volumeSlider = document.getElementById('volume-slider');
-    
-    // Elementos de Texto (Visual do Pip-Boy)
-    // Atenção: Use os IDs que definimos no HTML
     const titleEl = document.getElementById('titulo-visual'); 
     const artistEl = document.getElementById('artista-visual');
-    
-    // Tela de Início (Clique para liberar áudio)
     const overlay = document.getElementById('start-overlay');
-
-
-    // --- 2. CONFIGURAÇÃO INICIAL ---
+    const volumeSlider = document.getElementById('volume-slider');
     
-    // Volume inicial (50%)
+    // Container pai para aplicar o estilo de texto longo
+    const radioInfoContainer = document.querySelector('.radio-info');
+
+    // --- CONFIG INICIAL ---
     audio.volume = 0.5;
     if (volumeSlider) {
         volumeSlider.value = 0.5;
-        volumeSlider.addEventListener('input', function() {
-            audio.volume = this.value;
-        });
+        volumeSlider.addEventListener('input', function() { audio.volume = this.value; });
     }
-
-    // --- 3. LÓGICA DO PLAY INICIAL (FLASK JÁ TROUXE A MÚSICA) ---
-    // Como o Flask já preencheu o src="" e os textos {{ }},
-    // a gente não precisa dar fetch() agora. Só precisamos dar Play.
 
     if (overlay) {
         overlay.addEventListener('click', function() {
-            // O usuário clicou, então o navegador libera o áudio
             audio.play().then(() => {
-                // Sucesso: Esconde a tela de início
                 overlay.style.opacity = '0';
                 setTimeout(() => { overlay.style.display = 'none'; }, 500);
-            }).catch(error => {
-                console.error("Erro ao tentar iniciar o áudio:", error);
-            });
+            }).catch(e => console.error(e));
         });
     }
 
-    // --- 4. O LOOP INFINITO (BUSCAR PRÓXIMA) ---
-    // Isso só roda quando a música do Flask acabar.
-    
-    audio.addEventListener('ended', function() {
-        console.log("Música acabou! Chamando a próxima via API...");
+    // --- FUNÇÕES VISUAIS ---
+
+    const innerContainer = document.querySelector('.inner-container');
+
+    function atualizarDisplay(titulo, subtitulo, isDJ = false) {
+        if (!titleEl || !artistEl) return;
+
+        titleEl.textContent = titulo;
+        artistEl.textContent = subtitulo;
+
+        if (isDJ) {
+            // MUDANÇA 2: Ativamos o modo DJ no container PAI
+            innerContainer.classList.add('dj-active');
+            titleEl.classList.remove('blink-text'); 
+        } else {
+            // Desativamos (voltam as barras e volume)
+            innerContainer.classList.remove('dj-active');
+        }
+    }
+
+    function mostrarStatus(mensagem) {
+        if (!titleEl || !artistEl) return;
+        titleEl.textContent = "SYSTEM STATUS";
+        titleEl.classList.add('blink-text'); // Título pisca
+        artistEl.textContent = mensagem;
+        radioInfoContainer.classList.remove('dj-mode');
+    }
+
+    // --- LÓGICA DO PLAYER ---
+
+    function tocarProximaMusica() {
+        console.log(">>> Iniciando música...");
         
-        // Chama a rota que retorna JSON (não a rota da home!)
-        fetch('/proxima-musica') 
-            .then(response => response.json())
+        // Remove qualquer classe de DJ ou piscar
+        titleEl.classList.remove('blink-text');
+        radioInfoContainer.classList.remove('dj-mode');
+
+        fetch('/proxima-musica')
+            .then(res => res.json())
             .then(data => {
-                console.log("Tocando agora:", data.nome_musica);
-
-                // 1. Atualiza o Texto na Tela
-                if (titleEl) titleEl.textContent = data.nome_musica;
-                if (artistEl) artistEl.textContent = data.artista;
-
-                // 2. Coloca o novo áudio e toca
+                atualizarDisplay(data.nome_musica, data.artista, false);
                 audio.src = data.url;
                 audio.play();
             })
-            .catch(erro => console.error("Erro ao buscar próxima música:", erro));
+            .catch(err => console.error("Erro música:", err));
+    }
+
+    function falarDJ(texto) {
+        console.log("DJ Falando...");
+
+        // 1. Mostra o texto do DJ na tela (Modo DJ Ativado)
+        atualizarDisplay("THREE DOG - AO VIVO", texto, true);
+
+        const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(texto);
+        
+        // Tenta forçar voz em português ou inglês
+        // Dica: Se quiser listar as vozes, use synth.getVoices() no console
+        utterance.lang = 'pt-BR'; 
+        utterance.rate = 1.1; 
+        utterance.pitch = 0.9;
+
+        // --- O GRANDE FINAL ---
+        utterance.onend = function() {
+            console.log("DJ terminou.");
+            
+            // 2. Aviso que vai voltar a música
+            mostrarStatus("REINICIANDO PLAYLIST...");
+
+            // 3. Espera 2 segundos para o usuário ler o aviso, depois toca
+            setTimeout(() => {
+                tocarProximaMusica();
+            }, 2000); 
+        };
+
+        synth.speak(utterance);
+    }
+
+    // --- QUANDO A MÚSICA ACABA ---
+    audio.addEventListener('ended', function() {
+        console.log("Música acabou.");
+
+        // 1. Aviso visual imediato
+        mostrarStatus("RECEBENDO TRANSMISSÃO...");
+
+        // Pede o texto ao Python
+        fetch('/chamar-dj')
+            .then(res => res.text())
+            .then(textoDoDJ => {
+                // Pequeno delay dramático de 1.5s antes de começar a falar
+                setTimeout(() => {
+                    falarDJ(textoDoDJ);
+                }, 1500);
+            })
+            .catch(err => {
+                console.error("Erro DJ:", err);
+                tocarProximaMusica(); // Se der erro, pula pra música
+            });
     });
 
 });
