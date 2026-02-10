@@ -31,12 +31,19 @@ body {
 .pipboy-wrapper {
     position: relative;
     width: 100%;
-    max-width: 800px; /* Tamanho do Pipboy */
+    /* ANTES ERA: max-width: 800px; */
+    /* MUDAR PARA ALGO MENOR (tente 550px ou 600px) */
+    max-width: 550px; 
     margin: 0 auto;
 }
+
+/* O resto continua igual... */
 .pipboy-img {
     width: 100%;
     display: block;
+    /* Opcional: ajuda a imagem a não estourar verticalmente em telas muito achatadas */
+    max-height: 130vh; 
+    object-fit: contain;
 }
 
 /* --- A TELA VERDE (Área útil) --- */

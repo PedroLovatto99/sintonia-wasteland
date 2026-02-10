@@ -17,6 +17,7 @@ load_dotenv()
 
 chain = None
 is_ready = False
+lock = threading.Lock()
 
 FRASES_ESPERA = [
     "Atenção Wasteland! Estamos passando por problemas técnicos",
@@ -77,20 +78,22 @@ def inicializar_radialista():
 
     prompt = PromptTemplate.from_template(template)
 
-    chain = (
+    nova_chain = (
         {"context": retriever, "assunto": RunnablePassthrough()}
         | prompt
         | llm
         | StrOutputParser()
     )
 
+    with lock:
+        chain = nova_chain
+        is_ready = True
+
 def iniciar_sistema():
     
-    if is_ready:
-        return
-    
-    thread_dj = threading.Thread(target=inicializar_radialista, daemon=True)
-    thread_dj.start()
+    if not is_ready:
+        thread_dj = threading.Thread(target=inicializar_radialista, daemon=True)
+        thread_dj.start()
 
 
 def obter_fala(assunto):
