@@ -7,7 +7,7 @@ bp = Blueprint('bp_projeto', __name__)
 @bp.route('/')
 def index():
     musica = proxima_musica()
-    return render_template('index.html')
+    return render_template('index.html', musica=musica)
 
 
 @bp.route("/chamar-dj")

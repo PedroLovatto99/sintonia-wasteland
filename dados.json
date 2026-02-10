@@ -8,17 +8,240 @@
     },
         {
         "id": 2,
-        "nome_musica": "teste 2",
-        "artista": "Marty Robbins",
-        "duracao": 238,
-        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/10%20-%20Marty%20Robbins%20-%20big%20iron.mp3"
+        "nome_musica": "Heartaches by the Number",
+        "artista": "Ray Price",
+        "duracao": 155,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/05%20-%20Guy%20Mitchell%20-%20heartache%20by%20the%20numbers.mp3"
     },
         {
         "id": 3,
-        "nome_musica": "teste 3",
-        "artista": "Marty Robbins",
-        "duracao": 238,
-        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/10%20-%20Marty%20Robbins%20-%20big%20iron.mp3"
+        "nome_musica": "Hangover Heart ",
+        "artista": "Hank Thompson",
+        "duracao": 124,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/06%20-%20Hank%20Thompson%20-%20hangover%20heart.mp3"
+    },
+        {
+        "id": 4,
+        "nome_musica": "Mad About the Boy",
+        "artista": "Helen Forrest",
+        "duracao": 128,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/07%20-%20Helen%20Forrest%20-%20mad%20about%20the%20boy.mp3"
+    },
+    {
+        "id": 5,
+        "nome_musica": "Jingle Jangle Jingle",
+        "artista": "Kay Kyser",
+        "duracao": 203,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/09%20-%20Kay%20Kyser%20-%20jingle%20jangle%20jingle.mp3"
+    },
+    {
+        "id": 6,
+        "nome_musica": "Love Me As Though There Were No Tomorrow",
+        "artista": "Nat King Cole",
+        "duracao": 156,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/11%20-%20Nat%20King%20Cole%20-%20love%20me%20as%20though%20there%20were%20no%20tomorrow.mp3"
+    },
+    {
+        "id": 7,
+        "nome_musica": "Orange Colored Sky",
+        "artista": "Nat King Cole",
+        "duracao": 154,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/12%20-%20Nat%20King%20Cole%20-%20orange%20colored%20sky.mp3"
+    },
+    {
+        "id": 8,
+        "nome_musica": "Johnny Guitar",
+        "artista": "Peggy Lee",
+        "duracao": 181,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/13%20-%20Peggy%20Lee%20-%20johnny%20guitar.mp3"
+    },
+    {
+        "id": 9,
+        "nome_musica": "Ain't That a Kick in the Head",
+        "artista": "Dean Martin",
+        "duracao": 145,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/14%20-%20Dean%20Martin%20-%20ain_t%20that%20a%20kick%20in%20the%20head.mp3"
+    },
+    {
+        "id": 10,
+        "nome_musica": "Why Don't You Do Right?",
+        "artista": "Peggy Lee",
+        "duracao": 144,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/15%20-%20Peggy%20Lee%20-%20why%20don_t%20you%20do%20right.mp3"
+    },
+    {
+        "id": 11,
+        "nome_musica": "It's a Sin to Tell a Lie",
+        "artista": "The Ink Spots",
+        "duracao": 146,
+        "url": "https://archive.org/download/fallout-new-vegas-ost-bootleg/16%20-%20The%20Ink%20Spots%20-%20it_s%20a%20sin%20to%20tell%20a%20lie.mp3"
+    },
+    {
+        "id": 12,
+        "nome_musica": "Swing Doors",
+        "artista": "Allan Gray",
+        "duracao": 179,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Allan%20Gray%20-%20Swing%20Doors.mp3"
+    },
+    {
+        "id": 13,
+        "nome_musica": "Crazy He Calls Me",
+        "artista": "Billie Holiday",
+        "duracao": 185,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Billie%20Holiday%20-%20Crazy%20He%20Calls%20Me.mp3"
+    },
+    {
+        "id": 14,
+        "nome_musica": "Easy Living",
+        "artista": "Billie Holiday",
+        "duracao": 182,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Billie%20Holiday-%20Easy%20Living.mp3"
+    },
+    {
+        "id": 15,
+        "nome_musica": "Jazzy Interlude",
+        "artista": "Billy Munn",
+        "duracao": 170,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Billy%20Munn%20-%20Jazzy%20Interlude.mp3"
+    },
+    {
+        "id": 16,
+        "nome_musica": "Happy Times",
+        "artista": "Bob Crosby and The Bobcats",
+        "duracao": 165,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Bob%20Crosby%20and%20The%20Bobcats%20-%20Happy%20Times.mp3"
+    },
+    {
+        "id": 17,
+        "nome_musica": "Way Back Home",
+        "artista": "Bob Crosby and The Bobcats",
+        "duracao": 175,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Bob%20Crosby%20and%20The%20Bobcats%20-%20Way%20Back%20Home.mp3"
+    },
+    {
+        "id": 18,
+        "nome_musica": "Anything Goes",
+        "artista": "Cole Porter",
+        "duracao": 189,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Cole%20Porter%20-%20Anything%20Goes.mp3"
+    },
+    {
+        "id": 19,
+        "nome_musica": "Civilization",
+        "artista": "Danny Kaye and The Andrews Sisters",
+        "duracao": 181,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Danny%20Kaye%20and%20The%20Andrews%20Sisters%20-%20Civilization.mp3"
+    },
+    {
+        "id": 20,
+        "nome_musica": "Rythm For You",
+        "artista": "Eddy Christiani and Frans Poptie",
+        "duracao": 179,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Eddy%20Christiani%20and%20Frans%20Poptie%20-%20Rythm%20For%20You.mp3"
+    },
+    {
+        "id": 21,
+        "nome_musica": "Fox Boogie",
+        "artista": "Gerhard Trede",
+        "duracao": 196,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Gerhard%20Trede%20-%20Fox%20Boogie.mp3"
+    },
+    {
+        "id": 22,
+        "nome_musica": "Jolly Days",
+        "artista": "Gerhard Trede",
+        "duracao": 100,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Gerhard%20Trede%20-%20Jolly%20Days.mp3"
+    },
+    {
+        "id": 23,
+        "nome_musica": "I'm Tickled Pink",
+        "artista": "Jack Shaindlin",
+        "duracao": 109,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Jack%20Shaindlin%20-%20I%27m%20Tickled%20Pink.mp3"
+    },
+    {
+        "id": 24,
+        "nome_musica": "Let's Go Sunning",
+        "artista": "Jack Shaindlin",
+        "duracao": 101,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Jack%20Shaindlin%20-%20Let%27s%20Go%20Sunning.mp3"
+    },
+    {
+        "id": 25,
+        "nome_musica": "Butcher Pete (Part 1)",
+        "artista": "Roy Brown",
+        "duracao": 146,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Roy%20Brown%20-%20Butcher%20Pete%20%28Part%201%29.mp3"
+    },
+    {
+        "id": 26,
+        "nome_musica": "Mighty Mighty Man",
+        "artista": "Roy Brown",
+        "duracao": 153,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Roy%20Brown%20-%20Mighty%20Mighty%20Man.mp3"
+    },
+    {
+        "id": 27,
+        "nome_musica": "Boogie Man",
+        "artista": "Sid Phillips",
+        "duracao": 143,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Sid%20Phillips%20-%20Boogie%20Man.mp3"
+    },
+    {
+        "id": 28,
+        "nome_musica": "A Wonderful Guy",
+        "artista": "Tex Beneke and Margaret Whiting",
+        "duracao": 112,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Tex%20Beneke%20and%20Margaret%20Whiting%20-%20A%20Wonderful%20Guy.mp3"
+    },
+    {
+        "id": 29,
+        "nome_musica": "I Don't Want to Set the World on Fire",
+        "artista": "The Ink Spots",
+        "duracao": 184,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/The%20Ink%20Spots%20-%20I%20Don%27t%20Want%20to%20Set%20the%20World%20on%20Fire.mp3"
+    },
+    {
+        "id": 30,
+        "nome_musica": "Maybe",
+        "artista": "The Ink Spots",
+        "duracao": 170,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/The%20Ink%20Spots%20-%20Maybe.mp3"
+    },
+    {
+        "id": 31,
+        "nome_musica": "Into Each Life Some Rain Must Fall",
+        "artista": "The Ink Spots and Ella Fitzgerald",
+        "duracao": 187,
+        "url": "https://archive.org/download/Fallout_3_galaxy_news_radio-2008/The%20Ink%20Spots%20and%20Ella%20Fitzgerald%20-%20Into%20Each%20Life%20Some%20Rain%20Must%20Fall.mp3"
+    },
+    {
+        "id": 32,
+        "nome_musica": "A Good Man is Hard to Find ",
+        "artista": "Cass Daley",
+        "duracao": 158,
+        "url":"https://archive.org/download/find-me-there-fallout-76-ost/Fallout%2076%20Windows%2C%20gamerip%202018/A%20Good%20Man%20is%20Hard%20to%20Find%20-%20Cass%20Daley%20-%20Fallout%2076%20OST.mp3"
+    },
+    {
+        "id": 33,
+        "nome_musica": "Atom Bomb Baby",
+        "artista": "Five Stars",
+        "duracao": 137,
+        "url":"https://archive.org/download/find-me-there-fallout-76-ost/Fallout%2076%20Windows%2C%20gamerip%202018/Atom%20Bomb%20Baby%20-%20Five%20Stars%20-%20Fallout%2076%20OST.mp3"
+    },
+    {
+        "id": 34,
+        "nome_musica": "The Wanderer",
+        "artista": "Dion",
+        "duracao": 162,
+        "url": "https://archive.org/download/seogjinkyeong_2213/TheWandererDion.mp3"
+    },
+    {
+        "id": 35,
+        "nome_musica": "Take Me Home, Country Roads",
+        "artista": "CoPilot",
+        "duracao": 178,
+        "url": "https://archive.org/download/find-me-there-fallout-76-ost/Fallout%2076%20Windows%2C%20gamerip%202018/Country%20Roads%20-%20Copilot%20-%20Fallout%2076%20OST.mp3"
     }
-
 ]
