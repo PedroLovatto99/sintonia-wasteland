@@ -81,6 +81,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .pipboy-img {
@@ -89,8 +90,9 @@ main {
     width: auto;         
     object-fit: contain; 
     display: block;
-    
+    margin-left: 50px;
     filter: drop-shadow(0 0 15px rgba(0,0,0,0.9));
+
 }
 /* =========================================
    A TELA DO MONITOR (CALIBRAÇÃO)
@@ -102,7 +104,7 @@ main {
     /* Ajuste estes 4 valores até o texto cair dentro do vidro do Pip-Boy */
     
     top: 38%;       /* Sobe ou Desce */
-    left: 41%;      /* Esquerda ou Direita */
+    left: 44%;      /* Esquerda ou Direita */
     width: 45%;     /* Largura da área de texto */
     height: 35%;    /* Altura da área de texto */
     
@@ -394,4 +396,55 @@ input[type=range]::-moz-range-thumb {
     /* Esconde scrollbar */
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
+
+/* =========================================
+   PERSONAGENS LATERAIS (VAULT BOYS)
+   ========================================= */
+.side-char {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    z-index: 5;
+    pointer-events: none;
+
+    /* --- A MUDANÇA ESTÁ AQUI --- */
+    /* O segredo é usar o drop-shadow com a cor amarela do tema (#f5d547).
+       Eu coloquei dois filtros seguidos:
+       1. O primeiro (3px) cria um contorno mais fino e definido perto do corpo.
+       2. O segundo (15px) cria um brilho mais difuso em volta. */
+    filter: drop-shadow(0 0 3px #f5d547) drop-shadow(0 0 15px #f5d547);
+    
+}
+
+/* ESQUERDA (Banjo) */
+.char-left {
+    left: 1%;       
+    
+    /* MUDANÇA 2: Altura específica para o Banjo */
+    /* Como ele é largo, diminuímos um pouco a altura para não ficar gigante */
+    height: 70%;    
+   
+}
+
+/* DIREITA (Microfone/DJ) */
+.char-right {
+    right: 1%;   
+    left: 60%;   
+    
+    /* MUDANÇA 3: Altura maior para o Microfone */
+    /* Como ele é magro, aumentamos a altura para compensar visualmente */
+    height: 85%; 
+     
+}
+
+/* =========================================
+   RESPONSIVIDADE 
+   ========================================= */
+@media (max-width: 1200px) {
+    /* Esconde se a tela for pequena para não tapar o Pip-Boy */
+    .side-char {
+        display: none;
+    }
 }

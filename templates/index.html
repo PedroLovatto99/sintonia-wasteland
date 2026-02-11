@@ -22,7 +22,10 @@
     </header>
 
     <main>
-        
+        <img src="{{ url_for('static', filename='img/vault-boy-musica.png') }}" 
+             class="side-char char-left" 
+             alt="Vault Boy Música">
+
         <div class="pipboy-wrapper">
             
             <img src="{{ url_for('static', filename='img/pip-boy.png') }}" alt="Pip-Boy 3000" class="pipboy-img">
@@ -48,6 +51,9 @@
             </div>
             
         </div>
+        <img src="{{ url_for('static', filename='img/vault-boy-dj.png') }}" 
+             class="side-char char-right" 
+             alt="Vault Boy DJ">
 
         <audio id="radio-player" src="{{ musica['url'] }}"></audio>
         
