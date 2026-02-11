@@ -1,0 +1,36 @@
+services:
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: mlovatto
+      MYSQL_DATABASE: sintoniadb
+    ports:
+    - 3307:3306
+    volumes:
+    - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  sintonia-app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 5000:5000
+    depends_on:
+      db:
+        condition: service_healthy
+    
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: mlovatto 
+      DB_NAME: sintoniadb
+      SECRET_KEY: projetoSintonia
+
+volumes:
+  mysql_data:
