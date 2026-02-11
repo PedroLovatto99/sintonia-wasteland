@@ -31,7 +31,7 @@ Siga os passos abaixo para colocar a rádio no ar.
 ### 2. Clonar o repositório
 
 ```bash
-git clone [https://github.com/PedroLovatto99/sintonia-wasteland.git](https://github.com/PedroLovatto99/sintonia-wasteland.git)
+git clone https://github.com/PedroLovatto99/sintonia-wasteland.git
 cd sintonia-wasteland
 ```
 
