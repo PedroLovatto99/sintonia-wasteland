@@ -42,7 +42,7 @@ Crie um arquivo chamado `.env` na raiz do projeto. Este arquivo guardará suas c
 Copie e cole o modelo abaixo, preenchendo com seus dados:
 
 ```ini
-# Gere sua chave em: [https://aistudio.google.com/](https://aistudio.google.com/)
+# Gere sua chave em: https://aistudio.google.com/
 GOOGLE_API_KEY=sua_chave_do_google_aqui
 
 # --- Segurança do Flask ---
